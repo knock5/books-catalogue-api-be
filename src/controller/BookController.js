@@ -63,20 +63,25 @@ const BookController = {
 
   async updateBook(req, res) {
     try {
-      const { bookId } = req.params.id;
+      const { id } = req.params;
 
       const { judulBuku, pengarang, sinopsis } = req.body;
-      const target = await Books.findOne({ _id: bookId });
+      const target = await Books.findOne({ _id: id });
 
       if (!target) throw new NotFoundError('Book is not found');
 
-      const result = await Books.findByIdAndUpdate(bookId, {
+      const result = await Books.findByIdAndUpdate(id, {
         judulBuku,
         pengarang,
         sinopsis,
       });
 
-      res.status(200).json(result);
+      res.status(200).json({
+        message: 'Book updated successful',
+        data: {
+          result,
+        },
+      });
     } catch (error) {
       if (error instanceof ClientError) {
         res.json({
@@ -93,8 +98,8 @@ const BookController = {
 
   async deleteBook(req, res) {
     try {
-      const { bookId } = req.params.id;
-      const result = await Books.findOneAndDelete({ _id: bookId });
+      const { id } = req.params;
+      const result = await Books.findOneAndDelete({ _id: id });
 
       if (!result) throw new NotFoundError('Book is not found');
 
