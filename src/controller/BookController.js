@@ -13,15 +13,16 @@ const BookController = {
       res.status(200).json(result);
     } catch (error) {
       if (error instanceof ClientError) {
-        res.json({
+        res.status(res.statusCode).json({
           status: 'fail',
           message: error.message,
         });
-      } else {
-        res.status(500).json({
-          message: 'Maaf, terjadi kesalahan pada server kami...',
-        });
       }
+      // server error
+      res.status(500).json({
+        status: 'fail',
+        message: 'Maaf, terjadi kesalahan pada server kami...',
+      });
     }
   },
 
@@ -49,15 +50,16 @@ const BookController = {
       res.status(201).json(result);
     } catch (error) {
       if (error instanceof ClientError) {
-        res.json({
+        res.status(res.statusCode).json({
           status: 'fail',
           message: error.message,
         });
-      } else {
-        res.status(500).json({
-          message: 'Maaf, terjadi kesalahan pada server kami...',
-        });
       }
+      // server error
+      res.status(500).json({
+        status: 'fail',
+        message: 'Maaf, terjadi kesalahan pada server kami...',
+      });
     }
   },
 
@@ -84,15 +86,16 @@ const BookController = {
       });
     } catch (error) {
       if (error instanceof ClientError) {
-        res.json({
+        res.status(res.statusCode).json({
           status: 'fail',
           message: error.message,
         });
-      } else {
-        res.status(500).json({
-          message: 'Maaf, terjadi kesalahan pada server kami...',
-        });
       }
+      // server error
+      res.status(500).json({
+        status: 'fail',
+        message: 'Maaf, terjadi kesalahan pada server kami...',
+      });
     }
   },
 
@@ -106,15 +109,16 @@ const BookController = {
       res.status(200).json({ message: 'Book deleted succesful' });
     } catch (error) {
       if (error instanceof ClientError) {
-        res.json({
+        res.status(res.statusCode).json({
           status: 'fail',
           message: error.message,
         });
-      } else {
-        res.status(500).json({
-          message: 'Maaf, terjadi kesalahan pada server kami...',
-        });
       }
+      // server error
+      res.status(500).json({
+        status: 'fail',
+        message: 'Maaf, terjadi kesalahan pada server kami...',
+      });
     }
   },
 };
